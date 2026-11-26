@@ -1,0 +1,1181 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grade 9-Bronze • 2026 Year-End Party</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Google Fonts: Plus Jakarta Sans & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        navy: {
+                            950: '#070B19',
+                            900: '#0D1326',
+                            800: '#151E3B',
+                            700: '#1F2B52',
+                        },
+                        bronze: {
+                            300: '#F3D19E',
+                            400: '#E5B567',
+                            500: '#CD7F32',
+                            600: '#A8621E',
+                        }
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-8px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Festive Confetti & Glassmorphism Styling */
+        body {
+            background-color: #070B19;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(205, 127, 50, 0.16) 0px, transparent 50%),
+                radial-gradient(at 100% 0%, rgba(99, 102, 241, 0.15) 0px, transparent 50%),
+                radial-gradient(at 50% 100%, rgba(229, 181, 103, 0.1) 0px, transparent 60%);
+            background-attachment: fixed;
+            color: #F8FAFC;
+        }
+
+        .confetti-bg {
+            background-image: radial-gradient(#E5B567 1px, transparent 1px), radial-gradient(#818CF8 1px, #070B19 1px);
+            background-size: 48px 48px;
+            background-position: 0 0, 24px 24px;
+            opacity: 0.07;
+        }
+
+        .glass-panel {
+            background: rgba(21, 30, 59, 0.65);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(229, 181, 103, 0.18);
+        }
+
+        .glass-card {
+            background: rgba(13, 19, 38, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-card:hover {
+            border-color: rgba(229, 181, 103, 0.45);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.5), 0 0 20px -5px rgba(205, 127, 50, 0.2);
+        }
+
+        .bronze-gradient-text {
+            background: linear-gradient(135deg, #F3D19E 0%, #E5B567 50%, #CD7F32 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .bronze-btn {
+            background: linear-gradient(135deg, #E5B567 0%, #CD7F32 100%);
+            color: #070B19;
+            font-weight: 700;
+            box-shadow: 0 8px 20px -4px rgba(205, 127, 50, 0.45);
+            transition: all 0.2s ease;
+        }
+
+        .bronze-btn:hover:not(:disabled) {
+            filter: brightness(1.08);
+            transform: translateY(-1px);
+            box-shadow: 0 12px 24px -4px rgba(205, 127, 50, 0.6);
+        }
+
+        .bronze-btn:active:not(:disabled) {
+            transform: translateY(1px);
+        }
+
+        /* Responsive Masonry Layout */
+        .masonry-grid {
+            column-count: 1;
+            column-gap: 1.5rem;
+        }
+        @media (min-width: 640px) {
+            .masonry-grid { column-count: 2; }
+        }
+        @media (min-width: 1024px) {
+            .masonry-grid { column-count: 3; }
+        }
+        @media (min-width: 1280px) {
+            .masonry-grid { column-count: 4; }
+        }
+
+        .masonry-item {
+            break-inside: avoid;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #070B19;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1F2B52;
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #CD7F32;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col font-sans antialiased selection:bg-bronze-500 selection:text-navy-950">
+    <!-- Subtle Confetti Pattern Overlay -->
+    <div class="fixed inset-0 confetti-bg pointer-events-none z-0"></div>
+
+    <!-- Custom Toast Notification Container -->
+    <div id="toast-container" class="fixed top-5 right-5 z-50 flex flex-col gap-3 max-w-sm w-full pointer-events-none px-4 sm:px-0"></div>
+
+    <!-- Sticky Glass Header -->
+    <header class="sticky top-0 z-30 glass-panel border-b border-bronze-400/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 py-3.5 flex items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-2xl bg-gradient-to-br from-bronze-300 via-bronze-400 to-bronze-600 flex items-center justify-center text-navy-950 shadow-lg shadow-bronze-500/25 shrink-0">
+                    <i data-lucide="sparkles" class="w-5 h-5 stroke-[2.5]"></i>
+                </div>
+                <div>
+                    <div class="flex items-center gap-2">
+                        <span class="text-[11px] font-bold uppercase tracking-widest px-2 py-0.5 rounded-full bg-bronze-500/20 text-bronze-300 border border-bronze-400/30">
+                            Class of 2026
+                        </span>
+                        <span id="live-status-badge" class="inline-flex items-center gap-1.5 text-[11px] font-medium text-emerald-400">
+                            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                            Live Sync
+                        </span>
+                    </div>
+                    <h1 class="font-display font-extrabold text-base sm:text-xl tracking-tight text-white">
+                        Grade 9-Bronze <span class="text-bronze-400">•</span> <span class="bronze-gradient-text">2026 Year-End Party</span>
+                    </h1>
+                </div>
+            </div>
+
+            <button onclick="openUploadModal()" class="bronze-btn px-4 sm:px-5 py-2.5 rounded-2xl flex items-center gap-2 text-sm shrink-0 cursor-pointer">
+                <i data-lucide="camera" class="w-4 h-4 stroke-[2.5]"></i>
+                <span>Post Memory</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="relative z-10 flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-16">
+        
+        <!-- Festive Hero Banner -->
+        <section class="glass-panel rounded-3xl p-6 sm:p-8 mb-8 relative overflow-hidden">
+            <!-- Decorative Glow Orbs -->
+            <div class="absolute -top-24 -right-24 w-64 h-64 rounded-full bg-bronze-500/20 blur-3xl pointer-events-none"></div>
+            <div class="absolute -bottom-24 -left-24 w-64 h-64 rounded-full bg-indigo-500/20 blur-3xl pointer-events-none"></div>
+
+            <div class="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+                <div class="max-w-2xl">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-bronze-300 text-xs font-semibold mb-3">
+                        <i data-lucide="party-popper" class="w-3.5 h-3.5 text-bronze-400"></i>
+                        <span>Shared Live Class Time Capsule</span>
+                    </div>
+                    <h2 class="font-display text-2xl sm:text-4xl font-extrabold text-white tracking-tight mb-2.5">
+                        Capture the Chaos, Laughs & Memories of <span class="bronze-gradient-text">9-Bronze!</span>
+                    </h2>
+                    <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+                        Snap a selfie, record a dance clip, or upload group shots right from your phone. Everything posted here appears live on everyone's screen in real time!
+                    </p>
+                </div>
+
+                <!-- Live Memory Counter Card -->
+                <div class="flex flex-wrap sm:flex-nowrap items-center gap-3 sm:gap-4 shrink-0">
+                    <div class="glass-card rounded-2xl px-5 py-4 flex-1 sm:flex-initial min-w-[130px] text-center border-bronze-400/20">
+                        <div class="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1">Total Memories</div>
+                        <div id="stat-total" class="font-display text-3xl font-extrabold bronze-gradient-text">0</div>
+                    </div>
+                    <div class="glass-card rounded-2xl px-5 py-4 flex-1 sm:flex-initial min-w-[115px] text-center">
+                        <div class="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1">Photos</div>
+                        <div id="stat-photos" class="font-display text-2xl font-bold text-white">0</div>
+                    </div>
+                    <div class="glass-card rounded-2xl px-5 py-4 flex-1 sm:flex-initial min-w-[115px] text-center">
+                        <div class="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1">Videos</div>
+                        <div id="stat-videos" class="font-display text-2xl font-bold text-indigo-300">0</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Filter Tabs & Search Controls -->
+        <section class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+            <!-- Filter Pills -->
+            <div class="inline-flex p-1.5 rounded-2xl glass-panel self-start w-full sm:w-auto">
+                <button onclick="setFilter('all')" id="tab-all" class="filter-tab flex-1 sm:flex-initial px-4 py-2 rounded-xl text-sm font-semibold transition-all bg-bronze-500 text-navy-950 shadow-md cursor-pointer">
+                    All Memories
+                </button>
+                <button onclick="setFilter('image')" id="tab-image" class="filter-tab flex-1 sm:flex-initial px-4 py-2 rounded-xl text-sm font-semibold text-slate-300 hover:text-white transition-all flex items-center justify-center gap-1.5 cursor-pointer">
+                    <i data-lucide="image" class="w-4 h-4"></i>
+                    <span>Photos</span>
+                </button>
+                <button onclick="setFilter('video')" id="tab-video" class="filter-tab flex-1 sm:flex-initial px-4 py-2 rounded-xl text-sm font-semibold text-slate-300 hover:text-white transition-all flex items-center justify-center gap-1.5 cursor-pointer">
+                    <i data-lucide="video" class="w-4 h-4"></i>
+                    <span>Videos</span>
+                </button>
+            </div>
+
+            <!-- Search Bar -->
+            <div class="relative w-full md:w-80">
+                <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none"></i>
+                <input 
+                    type="text" 
+                    id="search-input" 
+                    oninput="handleSearch(this.value)"
+                    placeholder="Search classmate or caption..." 
+                    class="w-full pl-10 pr-9 py-2.5 rounded-2xl glass-panel text-sm text-white placeholder-slate-400 focus:outline-none focus:border-bronze-400 transition-colors"
+                >
+                <button id="clear-search-btn" onclick="clearSearch()" class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white cursor-pointer">
+                    <i data-lucide="x" class="w-4 h-4"></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- Loading Skeleton State -->
+        <div id="loading-state" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <div class="glass-card rounded-3xl p-4 h-80 animate-pulse flex flex-col justify-between">
+                <div class="w-full h-48 bg-white/5 rounded-2xl"></div>
+                <div class="space-y-2">
+                    <div class="h-4 bg-white/10 rounded w-1/3"></div>
+                    <div class="h-3 bg-white/5 rounded w-3/4"></div>
+                </div>
+            </div>
+            <div class="glass-card rounded-3xl p-4 h-80 animate-pulse hidden sm:flex flex-col justify-between">
+                <div class="w-full h-48 bg-white/5 rounded-2xl"></div>
+                <div class="space-y-2">
+                    <div class="h-4 bg-white/10 rounded w-1/2"></div>
+                    <div class="h-3 bg-white/5 rounded w-2/3"></div>
+                </div>
+            </div>
+            <div class="glass-card rounded-3xl p-4 h-80 animate-pulse hidden lg:flex flex-col justify-between">
+                <div class="w-full h-48 bg-white/5 rounded-2xl"></div>
+                <div class="space-y-2">
+                    <div class="h-4 bg-white/10 rounded w-2/5"></div>
+                    <div class="h-3 bg-white/5 rounded w-4/5"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Empty Search Result State -->
+        <div id="empty-search-state" class="hidden glass-panel rounded-3xl p-12 text-center max-w-lg mx-auto my-8">
+            <div class="w-16 h-16 rounded-2xl bg-bronze-500/15 border border-bronze-400/30 flex items-center justify-center mx-auto mb-4 text-bronze-400">
+                <i data-lucide="search-x" class="w-8 h-8"></i>
+            </div>
+            <h3 class="font-display text-xl font-bold text-white mb-2">No matching memories found</h3>
+            <p class="text-slate-400 text-sm mb-6">Try searching for another classmate's name or switch filter tabs.</p>
+            <button onclick="resetFilters()" class="px-5 py-2.5 rounded-xl bg-white/10 hover:bg-white/15 text-white text-sm font-semibold transition-colors cursor-pointer">
+                Show All Memories
+            </button>
+        </div>
+
+        <!-- Live Masonry Album Grid -->
+        <div id="album-grid" class="masonry-grid hidden"></div>
+
+    </main>
+
+    <!-- Floating Mobile Action Button -->
+    <button onclick="openUploadModal()" aria-label="Upload Photo or Video" class="sm:hidden fixed bottom-6 right-6 z-30 w-14 h-14 rounded-full bronze-btn flex items-center justify-center shadow-2xl cursor-pointer">
+        <i data-lucide="plus" class="w-7 h-7 stroke-[2.5]"></i>
+    </button>
+
+    <!-- Footer with Required Credit -->
+    <footer class="relative z-10 border-t border-white/10 bg-navy-950/80 backdrop-blur-md py-8 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+            <div class="flex items-center gap-2 text-slate-400 text-sm">
+                <i data-lucide="sparkles" class="w-4 h-4 text-bronze-400"></i>
+                <span>Grade 9-Bronze • 2026 Year-End Party Digital Album</span>
+            </div>
+            <div class="px-4 py-1.5 rounded-full glass-panel border-bronze-400/30 text-sm font-semibold tracking-wide text-bronze-300 shadow-sm">
+                made by: kezeeya
+            </div>
+        </div>
+    </footer>
+
+    <!-- UPLOAD MODAL -->
+    <div id="upload-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-navy-950/85 backdrop-blur-md">
+        <div class="glass-panel rounded-3xl max-w-lg w-full p-6 sm:p-7 border border-bronze-400/30 shadow-2xl relative max-h-[92vh] overflow-y-auto">
+            <div class="flex items-center justify-between mb-5">
+                <div class="flex items-center gap-2.5">
+                    <div class="w-9 h-9 rounded-xl bg-bronze-500/20 border border-bronze-400/40 flex items-center justify-center text-bronze-300">
+                        <i data-lucide="upload-cloud" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-display text-lg font-bold text-white">Share a Party Memory</h3>
+                        <p class="text-xs text-slate-400">Posts live to Grade 9-Bronze's album</p>
+                    </div>
+                </div>
+                <button onclick="closeUploadModal()" class="p-2 rounded-xl text-slate-400 hover:text-white hover:bg-white/10 transition-colors cursor-pointer">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+
+            <form id="upload-form" onsubmit="handleUploadSubmit(event)" class="space-y-4">
+                <!-- Classmate Name -->
+                <div>
+                    <label for="uploader-name" class="block text-xs font-semibold uppercase tracking-wider text-bronze-300 mb-1.5">
+                        Your Name / Nickname *
+                    </label>
+                    <input 
+                        type="text" 
+                        id="uploader-name" 
+                        required
+                        maxlength="32"
+                        placeholder="e.g., Kezeeya, Mark, Sophia..." 
+                        class="w-full px-4 py-3 rounded-2xl bg-navy-950/80 border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-bronze-400 transition-colors"
+                    >
+                </div>
+
+                <!-- Caption -->
+                <div>
+                    <label for="memory-caption" class="block text-xs font-semibold uppercase tracking-wider text-bronze-300 mb-1.5">
+                        Caption / Memory Note *
+                    </label>
+                    <textarea 
+                        id="memory-caption" 
+                        rows="2" 
+                        required
+                        maxlength="220"
+                        placeholder="What's happening in this moment? 🎉" 
+                        class="w-full px-4 py-3 rounded-2xl bg-navy-950/80 border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-bronze-400 transition-colors resize-none"
+                    ></textarea>
+                </div>
+
+                <!-- File Dropzone -->
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-bronze-300 mb-1.5">
+                        Photo or Short Video *
+                    </label>
+                    <div 
+                        id="dropzone"
+                        onclick="document.getElementById('media-input').click()"
+                        class="border-2 border-dashed border-bronze-400/35 hover:border-bronze-400 rounded-2xl p-6 text-center cursor-pointer transition-all bg-navy-950/50 hover:bg-navy-950/80"
+                    >
+                        <input 
+                            type="file" 
+                            id="media-input" 
+                            accept="image/*,video/mp4,video/webm,video/quicktime" 
+                            class="hidden"
+                            onchange="handleFileSelect(event)"
+                        >
+                        
+                        <div id="dropzone-placeholder" class="space-y-2">
+                            <div class="w-12 h-12 rounded-2xl bg-bronze-500/15 text-bronze-400 flex items-center justify-center mx-auto">
+                                <i data-lucide="image-plus" class="w-6 h-6"></i>
+                            </div>
+                            <p class="text-sm font-semibold text-white">Tap to choose from camera roll or drag & drop</p>
+                            <p class="text-xs text-slate-400">Supports JPG, PNG, WEBP & short MP4/MOV clips</p>
+                        </div>
+
+                        <!-- Live Media Preview -->
+                        <div id="media-preview-wrapper" class="hidden relative">
+                            <img id="image-preview" class="hidden max-h-56 w-auto mx-auto rounded-xl object-contain shadow-lg" alt="Preview">
+                            <video id="video-preview" class="hidden max-h-56 w-auto mx-auto rounded-xl shadow-lg" controls muted playsinline></video>
+                            <div class="mt-3 flex items-center justify-center gap-2 text-xs text-bronze-300 font-medium">
+                                <span id="file-info-label">Ready to post</span>
+                                <span class="underline text-slate-400 hover:text-white">Change file</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Compression / Progress Status -->
+                <div id="upload-progress-box" class="hidden rounded-2xl bg-bronze-500/10 border border-bronze-400/30 p-3.5">
+                    <div class="flex items-center justify-between text-xs font-semibold text-bronze-300 mb-1.5">
+                        <span id="upload-status-text">Optimizing & syncing to class album...</span>
+                        <span id="upload-percent">50%</span>
+                    </div>
+                    <div class="w-full h-2 bg-navy-950 rounded-full overflow-hidden">
+                        <div id="upload-progress-bar" class="h-full bg-gradient-to-r from-bronze-400 to-bronze-500 transition-all duration-300" style="width: 50%"></div>
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="pt-2 flex items-center gap-3">
+                    <button type="button" onclick="closeUploadModal()" class="flex-1 py-3 rounded-2xl bg-white/5 hover:bg-white/10 text-slate-300 text-sm font-semibold transition-colors cursor-pointer">
+                        Cancel
+                    </button>
+                    <button type="submit" id="submit-post-btn" class="flex-[2] py-3 rounded-2xl bronze-btn text-sm flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed">
+                        <i data-lucide="send" class="w-4 h-4"></i>
+                        <span>Post to 9-Bronze Album</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- FULLSCREEN LIGHTBOX MODAL -->
+    <div id="lightbox-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-3 sm:p-6 bg-navy-950/92 backdrop-blur-xl">
+        <div class="glass-panel rounded-3xl max-w-4xl w-full overflow-hidden border border-bronze-400/30 shadow-2xl flex flex-col md:flex-row max-h-[92vh]">
+            <!-- Media Stage -->
+            <div class="bg-black/80 flex-1 flex items-center justify-center min-h-[280px] sm:min-h-[420px] max-h-[60vh] md:max-h-[85vh] relative overflow-hidden">
+                <img id="lightbox-img" class="hidden max-w-full max-h-full object-contain" alt="Full memory view">
+                <video id="lightbox-video" class="hidden max-w-full max-h-full" controls playsinline></video>
+            </div>
+
+            <!-- Details & Live Reactions Sidebar -->
+            <div class="w-full md:w-80 lg:w-96 p-5 sm:p-6 flex flex-col justify-between bg-navy-900/95 border-t md:border-t-0 md:border-l border-white/10 overflow-y-auto">
+                <div>
+                    <div class="flex items-start justify-between gap-3 mb-4">
+                        <div class="flex items-center gap-3">
+                            <div id="lightbox-avatar" class="w-10 h-10 rounded-full bg-gradient-to-br from-bronze-400 to-bronze-600 text-navy-950 font-display font-extrabold flex items-center justify-center text-sm shrink-0">
+                                K
+                            </div>
+                            <div>
+                                <h4 id="lightbox-author" class="font-display font-bold text-white text-base leading-tight">Classmate</h4>
+                                <span id="lightbox-time" class="text-xs text-slate-400">Just now</span>
+                            </div>
+                        </div>
+                        <button onclick="closeLightbox()" class="p-2 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white transition-colors cursor-pointer">
+                            <i data-lucide="x" class="w-5 h-5"></i>
+                        </button>
+                    </div>
+
+                    <p id="lightbox-caption" class="text-slate-200 text-sm sm:text-base leading-relaxed mb-6 whitespace-pre-line">
+                        Caption goes here
+                    </p>
+                </div>
+
+                <!-- Live Reaction Bar inside Lightbox -->
+                <div class="pt-4 border-t border-white/10">
+                    <div class="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-3">React to this memory</div>
+                    <div id="lightbox-reactions" class="grid grid-cols-3 gap-2.5"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase SDK & App Logic -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, collection, addDoc, doc, updateDoc, increment, onSnapshot, getDocs } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Environment Configuration
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'grade-9-bronze-2026';
+        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : null;
+
+        // Application State
+        let db = null;
+        let auth = null;
+        let currentUser = null;
+        let allMemories = [];
+        let activeFilter = 'all';
+        let searchQuery = '';
+        let selectedMediaPayload = null; // { type: 'image'|'video', dataUrl: string, sizeLabel: string }
+        let activeLightboxId = null;
+        let seededStarter = false;
+
+        // Starter Welcome Card SVG Illustration (Clean, festive vector card)
+        const STARTER_BANNER_SVG = `data:image/svg+xml;utf8,${encodeURIComponent(`
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 540" width="800" height="540">
+                <defs>
+                    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#151E3B"/>
+                        <stop offset="50%" stop-color="#0D1326"/>
+                        <stop offset="100%" stop-color="#1E1B4B"/>
+                    </linearGradient>
+                    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#F3D19E"/>
+                        <stop offset="50%" stop-color="#E5B567"/>
+                        <stop offset="100%" stop-color="#CD7F32"/>
+                    </linearGradient>
+                </defs>
+                <rect width="800" height="540" fill="url(#bg)"/>
+                <circle cx="120" cy="110" r="90" fill="#CD7F32" opacity="0.14"/>
+                <circle cx="690" cy="430" r="120" fill="#6366F1" opacity="0.16"/>
+                <circle cx="640" cy="120" r="8" fill="#F3D19E"/>
+                <circle cx="180" cy="420" r="7" fill="#E5B567"/>
+                <circle cx="400" cy="85" r="6" fill="#818CF8"/>
+                <polygon points="240,130 252,145 234,152" fill="#F3D19E" opacity="0.8"/>
+                <polygon points="570,360 585,372 566,382" fill="#818CF8" opacity="0.8"/>
+                <rect x="65" y="65" width="670" height="410" rx="28" fill="none" stroke="url(#gold)" stroke-width="3" opacity="0.55"/>
+                <text x="400" y="210" text-anchor="middle" fill="#F3D19E" font-family="sans-serif" font-size="22" font-weight="700" letter-spacing="6">WELCOME TO THE PARTY</text>
+                <text x="400" y="280" text-anchor="middle" fill="url(#gold)" font-family="sans-serif" font-size="56" font-weight="800">GRADE 9-BRONZE</text>
+                <text x="400" y="335" text-anchor="middle" fill="#E2E8F0" font-family="sans-serif" font-size="26" font-weight="600">2026 Year-End Celebration 🎉</text>
+                <text x="400" y="405" text-anchor="middle" fill="#94A3B8" font-family="sans-serif" font-size="18">Tap "Post Memory" above to drop your best photos &amp; videos!</text>
+            </svg>
+        `)}`;
+
+        // Toast Notification Helper (Replaces alert)
+        window.showToast = function(message, type = 'info') {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            
+            const colors = {
+                success: 'border-emerald-400/40 bg-navy-900/95 text-emerald-200',
+                error: 'border-rose-400/40 bg-navy-900/95 text-rose-200',
+                info: 'border-bronze-400/40 bg-navy-900/95 text-bronze-200'
+            };
+            const icons = {
+                success: 'check-circle-2',
+                error: 'alert-circle',
+                info: 'sparkles'
+            };
+
+            toast.className = `pointer-events-auto flex items-center gap-3 px-4 py-3.5 rounded-2xl border backdrop-blur-xl shadow-2xl transform transition-all duration-300 translate-y-[-10px] opacity-0 ${colors[type] || colors.info}`;
+            toast.innerHTML = `
+                <i data-lucide="${icons[type] || icons.info}" class="w-5 h-5 shrink-0"></i>
+                <span class="text-sm font-medium leading-snug">${escapeHtml(message)}</span>
+            `;
+            container.appendChild(toast);
+            lucide.createIcons();
+
+            requestAnimationFrame(() => {
+                toast.classList.remove('translate-y-[-10px]', 'opacity-0');
+            });
+
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'translate-y-[-10px]');
+                setTimeout(() => toast.remove(), 300);
+            }, 3800);
+        };
+
+        // Escape HTML to prevent XSS
+        function escapeHtml(str) {
+            if (!str) return '';
+            return String(str)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#039;');
+        }
+
+        // Format Relative Timestamp
+        function formatTimeAgo(timestampMs) {
+            if (!timestampMs) return 'Just now';
+            const diffSec = Math.floor((Date.now() - timestampMs) / 1000);
+            if (diffSec < 60) return 'Just now';
+            const diffMin = Math.floor(diffSec / 60);
+            if (diffMin < 60) return `${diffMin}m ago`;
+            const diffHr = Math.floor(diffMin / 60);
+            if (diffHr < 24) return `${diffHr}h ago`;
+            const date = new Date(timestampMs);
+            return date.toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
+        }
+
+        // Initialize Firebase Auth & Real-Time Firestore Listener
+        async function initApp() {
+            if (!firebaseConfig) {
+                // Fallback local demo mode if config is absent
+                allMemories = [getStarterMemoryObject()];
+                finishInitialLoad();
+                return;
+            }
+
+            try {
+                const app = initializeApp(firebaseConfig);
+                auth = getAuth(app);
+                db = getFirestore(app);
+
+                // RULE 3: Authenticate FIRST before any Firestore operations
+                if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                    await signInWithCustomToken(auth, __initial_auth_token);
+                } else {
+                    await signInAnonymously(auth);
+                }
+
+                currentUser = auth.currentUser;
+                onAuthStateChanged(auth, (user) => {
+                    currentUser = user;
+                });
+
+                startRealtimeAlbumListener();
+            } catch (err) {
+                console.error("Initialization error:", err);
+                showToast("Running in offline preview mode.", "info");
+                allMemories = [getStarterMemoryObject()];
+                finishInitialLoad();
+            }
+        }
+
+        function getStarterMemoryObject() {
+            return {
+                id: 'starter-welcome-2026',
+                author: 'Kezeeya & 9-Bronze Officers',
+                caption: 'Happy 2026 Year-End Party, Grade 9-Bronze! 🥂✨ Drop your favorite squad selfies, candid moments, and dance floor clips right here so everyone can relive tonight forever!',
+                mediaType: 'image',
+                mediaUrl: STARTER_BANNER_SVG,
+                createdAt: Date.now(),
+                reactions: { heart: 12, laugh: 5, party: 18 },
+                isStarter: true
+            };
+        }
+
+        function startRealtimeAlbumListener() {
+            if (!currentUser || !db) return;
+
+            // RULE 1 & RULE 2: Strict public artifact collection path & simple collection query
+            const memoriesCol = collection(db, 'artifacts', appId, 'public', 'data', 'memories');
+
+            onSnapshot(memoriesCol, async (snapshot) => {
+                const items = [];
+                snapshot.forEach((docSnap) => {
+                    items.push({ id: docSnap.id, ...docSnap.data() });
+                });
+
+                // Sort newest first in JavaScript memory
+                items.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+
+                // Seed welcoming starter memory if database is completely empty
+                if (items.length === 0 && !seededStarter) {
+                    seededStarter = true;
+                    try {
+                        const starter = getStarterMemoryObject();
+                        delete starter.id;
+                        await addDoc(memoriesCol, starter);
+                        return; // Snapshot will re-fire immediately with the new doc
+                    } catch (seedErr) {
+                        console.warn("Could not seed starter card:", seedErr);
+                        items.push(getStarterMemoryObject());
+                    }
+                }
+
+                allMemories = items;
+                finishInitialLoad();
+
+                // Update open lightbox if active
+                if (activeLightboxId) {
+                    const updatedItem = allMemories.find(m => m.id === activeLightboxId);
+                    if (updatedItem) {
+                        renderLightboxReactions(updatedItem);
+                    }
+                }
+            }, (error) => {
+                console.error("Firestore real-time listener error:", error);
+                showToast("Sync interrupted. Retrying connection...", "error");
+                if (allMemories.length === 0) {
+                    allMemories = [getStarterMemoryObject()];
+                    finishInitialLoad();
+                }
+            });
+        }
+
+        function finishInitialLoad() {
+            document.getElementById('loading-state').classList.add('hidden');
+            updateStats();
+            renderAlbumGrid();
+        }
+
+        function updateStats() {
+            const total = allMemories.length;
+            const photos = allMemories.filter(m => m.mediaType === 'image').length;
+            const videos = allMemories.filter(m => m.mediaType === 'video').length;
+
+            document.getElementById('stat-total').textContent = total;
+            document.getElementById('stat-photos').textContent = photos;
+            document.getElementById('stat-videos').textContent = videos;
+        }
+
+        // Render Filtered Masonry Cards
+        function renderAlbumGrid() {
+            const grid = document.getElementById('album-grid');
+            const emptyState = document.getElementById('empty-search-state');
+
+            const filtered = allMemories.filter((item) => {
+                const matchesType = activeFilter === 'all' || item.mediaType === activeFilter;
+                const q = searchQuery.trim().toLowerCase();
+                const matchesQuery = !q || 
+                    (item.author && item.author.toLowerCase().includes(q)) ||
+                    (item.caption && item.caption.toLowerCase().includes(q));
+                return matchesType && matchesQuery;
+            });
+
+            if (filtered.length === 0) {
+                grid.classList.add('hidden');
+                emptyState.classList.remove('hidden');
+                return;
+            }
+
+            emptyState.classList.add('hidden');
+            grid.classList.remove('hidden');
+
+            grid.innerHTML = filtered.map((item) => {
+                const reactions = item.reactions || { heart: 0, laugh: 0, party: 0 };
+                const initial = (item.author || 'B').trim().charAt(0).toUpperCase();
+                const isVideo = item.mediaType === 'video';
+
+                return `
+                    <article class="masonry-item glass-card rounded-3xl overflow-hidden flex flex-col group">
+                        <!-- Media Thumbnail -->
+                        <div onclick="openLightbox('${item.id}')" class="relative cursor-pointer overflow-hidden bg-navy-950">
+                            ${isVideo ? `
+                                <video 
+                                    src="${item.mediaUrl}" 
+                                    class="w-full h-auto max-h-[420px] object-cover" 
+                                    muted 
+                                    playsinline 
+                                    preload="metadata"
+                                    onmouseover="this.play().catch(()=>{})" 
+                                    onmouseout="this.pause()"
+                                ></video>
+                                <div class="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-navy-950/80 backdrop-blur-md border border-white/15 text-xs font-semibold text-indigo-300 flex items-center gap-1">
+                                    <i data-lucide="play" class="w-3 h-3 fill-current"></i>
+                                    <span>Video</span>
+                                </div>
+                            ` : `
+                                <img 
+                                    src="${item.mediaUrl}" 
+                                    alt="Memory by ${escapeHtml(item.author)}" 
+                                    loading="lazy"
+                                    class="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                                >
+                            `}
+                            <div class="absolute inset-0 bg-gradient-to-t from-navy-950/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end justify-end p-3">
+                                <span class="px-3 py-1.5 rounded-xl bg-navy-950/80 backdrop-blur-md text-xs font-semibold text-white flex items-center gap-1.5 border border-white/15">
+                                    <i data-lucide="maximize-2" class="w-3.5 h-3.5 text-bronze-400"></i>
+                                    <span>Expand</span>
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- Card Content -->
+                        <div class="p-4 sm:p-5 flex-1 flex flex-col justify-between gap-4">
+                            <div>
+                                <!-- Author Badge & Time -->
+                                <div class="flex items-center justify-between gap-2 mb-2.5">
+                                    <div class="flex items-center gap-2 min-w-0">
+                                        <div class="w-7 h-7 rounded-full bg-gradient-to-br from-bronze-300 to-bronze-600 text-navy-950 font-display font-extrabold text-xs flex items-center justify-center shrink-0">
+                                            ${escapeHtml(initial)}
+                                        </div>
+                                        <span class="font-display font-bold text-sm text-bronze-300 truncate">
+                                            ${escapeHtml(item.author)}
+                                        </span>
+                                    </div>
+                                    <span class="text-[11px] font-medium text-slate-400 shrink-0">
+                                        ${formatTimeAgo(item.createdAt)}
+                                    </span>
+                                </div>
+
+                                <!-- Caption -->
+                                <p class="text-slate-200 text-sm leading-relaxed break-words">
+                                    ${escapeHtml(item.caption)}
+                                </p>
+                            </div>
+
+                            <!-- Interactive Reaction Buttons -->
+                            <div class="pt-3 border-t border-white/10 flex items-center gap-2">
+                                <button onclick="reactToMemory('${item.id}', 'heart')" class="flex-1 py-1.5 px-2.5 rounded-xl bg-white/5 hover:bg-rose-500/20 border border-white/5 hover:border-rose-400/40 text-xs font-semibold text-slate-200 flex items-center justify-center gap-1.5 transition-all active:scale-95 cursor-pointer">
+                                    <span>❤️</span>
+                                    <span>${reactions.heart || 0}</span>
+                                </button>
+                                <button onclick="reactToMemory('${item.id}', 'laugh')" class="flex-1 py-1.5 px-2.5 rounded-xl bg-white/5 hover:bg-amber-500/20 border border-white/5 hover:border-amber-400/40 text-xs font-semibold text-slate-200 flex items-center justify-center gap-1.5 transition-all active:scale-95 cursor-pointer">
+                                    <span>😂</span>
+                                    <span>${reactions.laugh || 0}</span>
+                                </button>
+                                <button onclick="reactToMemory('${item.id}', 'party')" class="flex-1 py-1.5 px-2.5 rounded-xl bg-white/5 hover:bg-bronze-500/20 border border-white/5 hover:border-bronze-400/40 text-xs font-semibold text-slate-200 flex items-center justify-center gap-1.5 transition-all active:scale-95 cursor-pointer">
+                                    <span>🎉</span>
+                                    <span>${reactions.party || 0}</span>
+                                </button>
+                            </div>
+                        </div>
+                    </article>
+                `;
+            }).join('');
+
+            lucide.createIcons();
+        }
+
+        // Live Reaction Incrementer
+        window.reactToMemory = async function(memoryId, reactionType) {
+            const target = allMemories.find(m => m.id === memoryId);
+            if (!target) return;
+
+            // Optimistic UI update
+            if (!target.reactions) target.reactions = { heart: 0, laugh: 0, party: 0 };
+            target.reactions[reactionType] = (target.reactions[reactionType] || 0) + 1;
+            renderAlbumGrid();
+            if (activeLightboxId === memoryId) {
+                renderLightboxReactions(target);
+            }
+
+            if (!db || !currentUser || memoryId === 'starter-welcome-2026') return;
+
+            try {
+                const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'memories', memoryId);
+                await updateDoc(docRef, {
+                    [`reactions.${reactionType}`]: increment(1)
+                });
+            } catch (err) {
+                console.error("Failed to sync reaction:", err);
+            }
+        };
+
+        // Filter & Search Handlers
+        window.setFilter = function(filterType) {
+            activeFilter = filterType;
+            document.querySelectorAll('.filter-tab').forEach(btn => {
+                btn.classList.remove('bg-bronze-500', 'text-navy-950', 'shadow-md');
+                btn.classList.add('text-slate-300', 'hover:text-white');
+            });
+            const activeBtn = document.getElementById(`tab-${filterType}`);
+            if (activeBtn) {
+                activeBtn.classList.add('bg-bronze-500', 'text-navy-950', 'shadow-md');
+                activeBtn.classList.remove('text-slate-300', 'hover:text-white');
+            }
+            renderAlbumGrid();
+        };
+
+        window.handleSearch = function(val) {
+            searchQuery = val;
+            const clearBtn = document.getElementById('clear-search-btn');
+            if (val.trim().length > 0) {
+                clearBtn.classList.remove('hidden');
+            } else {
+                clearBtn.classList.add('hidden');
+            }
+            renderAlbumGrid();
+        };
+
+        window.clearSearch = function() {
+            const input = document.getElementById('search-input');
+            input.value = '';
+            handleSearch('');
+        };
+
+        window.resetFilters = function() {
+            clearSearch();
+            setFilter('all');
+        };
+
+        // Upload Modal Controls
+        window.openUploadModal = function() {
+            const modal = document.getElementById('upload-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        };
+
+        window.closeUploadModal = function() {
+            const modal = document.getElementById('upload-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            resetUploadForm();
+        };
+
+        function resetUploadForm() {
+            document.getElementById('upload-form').reset();
+            selectedMediaPayload = null;
+            document.getElementById('dropzone-placeholder').classList.remove('hidden');
+            document.getElementById('media-preview-wrapper').classList.add('hidden');
+            document.getElementById('image-preview').classList.add('hidden');
+            document.getElementById('video-preview').classList.add('hidden');
+            document.getElementById('upload-progress-box').classList.add('hidden');
+            document.getElementById('submit-post-btn').disabled = false;
+        }
+
+        // Drag & Drop Support
+        const dropzone = document.getElementById('dropzone');
+        dropzone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            dropzone.classList.add('border-bronze-400', 'bg-bronze-500/10');
+        });
+        dropzone.addEventListener('dragleave', () => {
+            dropzone.classList.remove('border-bronze-400', 'bg-bronze-500/10');
+        });
+        dropzone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dropzone.classList.remove('border-bronze-400', 'bg-bronze-500/10');
+            if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+                processSelectedFile(e.dataTransfer.files[0]);
+            }
+        });
+
+        window.handleFileSelect = function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                processSelectedFile(file);
+            }
+        };
+
+        // Client-Side Image Compression & Video Size Guard (Ensures < 900KB for fast Firestore real-time sync)
+        async function processSelectedFile(file) {
+            const isImage = file.type.startsWith('image/');
+            const isVideo = file.type.startsWith('video/');
+
+            if (!isImage && !isVideo) {
+                showToast("Please select a valid photo or video file.", "error");
+                return;
+            }
+
+            const placeholder = document.getElementById('dropzone-placeholder');
+            const previewWrapper = document.getElementById('media-preview-wrapper');
+            const imgPreview = document.getElementById('image-preview');
+            const vidPreview = document.getElementById('video-preview');
+            const infoLabel = document.getElementById('file-info-label');
+
+            if (isImage) {
+                try {
+                    const compressedDataUrl = await compressImageToDataUrl(file, 1080, 0.78);
+                    const approxKb = Math.round((compressedDataUrl.length * 3) / 4 / 1024);
+
+                    if (approxKb > 920) {
+                        // Extra pass if still large
+                        const tighterDataUrl = await compressImageToDataUrl(file, 800, 0.65);
+                        selectedMediaPayload = {
+                            type: 'image',
+                            dataUrl: tighterDataUrl
+                        };
+                    } else {
+                        selectedMediaPayload = {
+                            type: 'image',
+                            dataUrl: compressedDataUrl
+                        };
+                    }
+
+                    placeholder.classList.add('hidden');
+                    previewWrapper.classList.remove('hidden');
+                    vidPreview.classList.add('hidden');
+                    imgPreview.src = selectedMediaPayload.dataUrl;
+                    imgPreview.classList.remove('hidden');
+                    infoLabel.textContent = `Photo ready (${Math.round((selectedMediaPayload.dataUrl.length * 3) / 4 / 1024)} KB)`;
+                } catch (err) {
+                    console.error("Image compression error:", err);
+                    showToast("Could not process that image. Please try another photo.", "error");
+                }
+            } else if (isVideo) {
+                // Firestore document limit is 1MB (~720KB raw binary file)
+                const maxVideoBytes = 720 * 1024;
+                if (file.size > maxVideoBytes) {
+                    showToast("Video is too large for instant live sync (max ~700KB / short 3-5s clip). Try a shorter clip or upload a photo!", "error");
+                    document.getElementById('media-input').value = '';
+                    return;
+                }
+
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    selectedMediaPayload = {
+                        type: 'video',
+                        dataUrl: e.target.result
+                    };
+                    placeholder.classList.add('hidden');
+                    previewWrapper.classList.remove('hidden');
+                    imgPreview.classList.add('hidden');
+                    vidPreview.src = selectedMediaPayload.dataUrl;
+                    vidPreview.classList.remove('hidden');
+                    infoLabel.textContent = `Video clip ready (${Math.round(file.size / 1024)} KB)`;
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function compressImageToDataUrl(file, maxDimension, quality) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = (event) => {
+                    const img = new Image();
+                    img.onload = () => {
+                        let width = img.width;
+                        let height = img.height;
+
+                        if (width > maxDimension || height > maxDimension) {
+                            if (width > height) {
+                                height = Math.round((height * maxDimension) / width);
+                                width = maxDimension;
+                            } else {
+                                width = Math.round((width * maxDimension) / height);
+                                height = maxDimension;
+                            }
+                        }
+
+                        const canvas = document.createElement('canvas');
+                        canvas.width = width;
+                        canvas.height = height;
+                        const ctx = canvas.getContext('2d');
+                        ctx.drawImage(img, 0, 0, width, height);
+
+                        resolve(canvas.toDataURL('image/jpeg', quality));
+                    };
+                    img.onerror = reject;
+                    img.src = event.target.result;
+                };
+                reader.onerror = reject;
+                reader.readAsDataURL(file);
+            });
+        }
+
+        // Submit New Memory to Real-Time Firestore
+        window.handleUploadSubmit = async function(event) {
+            event.preventDefault();
+
+            const author = document.getElementById('uploader-name').value.trim();
+            const caption = document.getElementById('memory-caption').value.trim();
+
+            if (!author || !caption) {
+                showToast("Please enter your name and a caption.", "error");
+                return;
+            }
+
+            if (!selectedMediaPayload) {
+                showToast("Please choose a photo or short video first!", "error");
+                return;
+            }
+
+            const submitBtn = document.getElementById('submit-post-btn');
+            const progressBox = document.getElementById('upload-progress-box');
+            const progressBar = document.getElementById('upload-progress-bar');
+            const progressPercent = document.getElementById('upload-percent');
+
+            submitBtn.disabled = true;
+            progressBox.classList.remove('hidden');
+            progressBar.style.width = '65%';
+            progressPercent.textContent = '65%';
+
+            const newMemory = {
+                author,
+                caption,
+                mediaType: selectedMediaPayload.type,
+                mediaUrl: selectedMediaPayload.dataUrl,
+                createdAt: Date.now(),
+                uid: currentUser ? currentUser.uid : 'guest',
+                reactions: {
+                    heart: 1,
+                    laugh: 0,
+                    party: 1
+                }
+            };
+
+            try {
+                if (db && currentUser) {
+                    const memoriesCol = collection(db, 'artifacts', appId, 'public', 'data', 'memories');
+                    await addDoc(memoriesCol, newMemory);
+                } else {
+                    // Fallback local mode
+                    allMemories.unshift({ id: 'local-' + Date.now(), ...newMemory });
+                    updateStats();
+                    renderAlbumGrid();
+                }
+
+                progressBar.style.width = '100%';
+                progressPercent.textContent = '100%';
+
+                setTimeout(() => {
+                    closeUploadModal();
+                    showToast("Posted live to Grade 9-Bronze's album! 🎉", "success");
+                }, 250);
+            } catch (err) {
+                console.error("Upload failed:", err);
+                submitBtn.disabled = false;
+                progressBox.classList.add('hidden');
+                showToast("Upload failed—file might be slightly too large. Try a smaller photo!", "error");
+            }
+        };
+
+        // Lightbox Full-Screen Modal Controls
+        window.openLightbox = function(memoryId) {
+            const item = allMemories.find(m => m.id === memoryId);
+            if (!item) return;
+
+            activeLightboxId = memoryId;
+            const modal = document.getElementById('lightbox-modal');
+            const imgEl = document.getElementById('lightbox-img');
+            const vidEl = document.getElementById('lightbox-video');
+
+            document.getElementById('lightbox-avatar').textContent = (item.author || 'B').trim().charAt(0).toUpperCase();
+            document.getElementById('lightbox-author').textContent = item.author || 'Classmate';
+            document.getElementById('lightbox-time').textContent = formatTimeAgo(item.createdAt);
+            document.getElementById('lightbox-caption').textContent = item.caption || '';
+
+            if (item.mediaType === 'video') {
+                imgEl.classList.add('hidden');
+                vidEl.src = item.mediaUrl;
+                vidEl.classList.remove('hidden');
+                vidEl.play().catch(() => {});
+            } else {
+                vidEl.pause();
+                vidEl.classList.add('hidden');
+                imgEl.src = item.mediaUrl;
+                imgEl.classList.remove('hidden');
+            }
+
+            renderLightboxReactions(item);
+
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        };
+
+        function renderLightboxReactions(item) {
+            const container = document.getElementById('lightbox-reactions');
+            const reactions = item.reactions || { heart: 0, laugh: 0, party: 0 };
+
+            container.innerHTML = `
+                <button onclick="reactToMemory('${item.id}', 'heart')" class="py-2.5 px-3 rounded-2xl bg-white/5 hover:bg-rose-500/20 border border-white/10 hover:border-rose-400/50 text-sm font-bold text-white flex items-center justify-center gap-1.5 transition-all active:scale-95 cursor-pointer">
+                    <span>❤️</span>
+                    <span>${reactions.heart || 0}</span>
+                </button>
+                <button onclick="reactToMemory('${item.id}', 'laugh')" class="py-2.5 px-3 rounded-2xl bg-white/5 hover:bg-amber-500/20 border border-white/10 hover:border-amber-400/50 text-sm font-bold text-white flex items-center justify-center gap-1.5 transition-all active:scale-95 cursor-pointer">
+                    <span>😂</span>
+                    <span>${reactions.laugh || 0}</span>
+                </button>
+                <button onclick="reactToMemory('${item.id}', 'party')" class="py-2.5 px-3 rounded-2xl bg-white/5 hover:bg-bronze-500/20 border border-white/10 hover:border-bronze-400/50 text-sm font-bold text-white flex items-center justify-center gap-1.5 transition-all active:scale-95 cursor-pointer">
+                    <span>🎉</span>
+                    <span>${reactions.party || 0}</span>
+                </button>
+            `;
+        }
+
+        window.closeLightbox = function() {
+            const modal = document.getElementById('lightbox-modal');
+            const vidEl = document.getElementById('lightbox-video');
+            vidEl.pause();
+            vidEl.src = '';
+            activeLightboxId = null;
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        };
+
+        // Close modals on Escape key or backdrop click
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeUploadModal();
+                closeLightbox();
+            }
+        });
+
+        document.getElementById('upload-modal').addEventListener('click', (e) => {
+            if (e.target.id === 'upload-modal') closeUploadModal();
+        });
+
+        document.getElementById('lightbox-modal').addEventListener('click', (e) => {
+            if (e.target.id === 'lightbox-modal') closeLightbox();
+        });
+
+        // Boot App
+        window.addEventListener('DOMContentLoaded', initApp);
+    </script>
+</body>
+</html>
